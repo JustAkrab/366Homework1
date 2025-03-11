@@ -19,11 +19,12 @@ with open('train-Spring2025.txt', 'r', encoding="utf8") as f:
             dictionary_one[spit[i]] = dictionary_one.get(spit[i], 0) + 1
             if i != 0:
                 dictionary_two[spit[i] + spit[i-1]] = dictionary_two.get((spit[i] + spit[i-1]), 0) + 1
-for i in range(dictionary_one.keys()):
-    if dictionary_one[i] == 1:
+for i in dictionary_one.keys():
+    if dictionary_one.get(dictionary_one[i]) == 1:
         del dictionary_one[i]
         del_counter += 1
 dictionary_one["<unk>"] = del_counter
+print(del_counter)
 
 
 
