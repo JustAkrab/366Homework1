@@ -2,7 +2,9 @@
 
 
 dictionary_one = {}
+dictionary_two = {}
 padded_list = []
+del_counter = 0
 with open('train-Spring2025.txt', 'r', encoding="utf8") as f:
     for line in f:
             # print(line)
@@ -14,7 +16,20 @@ with open('train-Spring2025.txt', 'r', encoding="utf8") as f:
             # print(i.lower())
             spit[i] = spit[i].lower()
             
-            dictionary_one[spit[i]] = dictionary_one.get(spit[i], 0) + 1 
+            dictionary_one[spit[i]] = dictionary_one.get(spit[i], 0) + 1
+            if i != 0:
+                dictionary_two[spit[i] + spit[i-1]] = dictionary_two.get((spit[i] + spit[i-1]), 0) + 1
+for i in range(dictionary_one.keys()):
+    if dictionary_one[i] == 1:
+        del dictionary_one[i]
+        del_counter += 1
+dictionary_one["<unk>"] = del_counter
+
+
+
+
+
+
         # print(spit)
 
         # Replace all words occurring in the training data once with the token <unk>. Every word
