@@ -49,6 +49,7 @@ with open('test.txt', 'r') as tf:
         sin = "<s> " + rine.rstrip() + " </s>"
         sprint = sin.split()
         # print(sprint)
+        unigram_sum = 0
         for j in range(len(sprint)):
             sprint[j] = sprint[j].lower()
             for m in range(j+1, len(sprint)):
@@ -60,13 +61,20 @@ with open('test.txt', 'r') as tf:
             if word not in dictionary_one.keys():
                 word_in_sentence = 0
                 continue
-            print("uigram Dictionary: ", dictionary_one.get(word))
-            print("word count in sentence: ", word_in_sentence)
+            # print(word)
+            # print("uigram Dictionary: ", dictionary_one.get(word))
+            # print("word count in sentence: ", word_in_sentence)
+            # print("Unigram Prob: ", unigram_sum)
             unigram_sum = (word_in_sentence/dictionary_one.get(word))
-            print("Unigram Prob: ", unigram_sum)
+            
             # word_in_sentence = 0
             unigram_dictionary[word] = unigram_dictionary.get(word, unigram_sum)
-print(unigram_dictionary)
+        for string in range(1, len(sprint)):
+            print(sprint[string - 1])
+        
+# print(unigram_dictionary)
+        
+            
 
 
         # print(sprint)
